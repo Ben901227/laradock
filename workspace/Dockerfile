@@ -50,6 +50,10 @@ ENV PGID ${PGID}
 RUN set -xe; \
     apt-get update -yqq && \
     pecl channel-update pecl.php.net && \
+    # Ubuntu 24.04 base images ship a default "ubuntu" user/group with UID/GID 1000,
+    # which collides with the default PUID/PGID below.
+    (userdel -r ubuntu 2>/dev/null || true) && \
+    (groupdel ubuntu 2>/dev/null || true) && \
     groupadd -g ${PGID} laradock && \
     useradd -l -u ${PUID} -g laradock -m laradock -G docker_env && \
     usermod -p "*" laradock -s /bin/bash && \
