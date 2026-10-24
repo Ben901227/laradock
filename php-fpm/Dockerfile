@@ -11,10 +11,14 @@
 #
 # Note: Base Image name format {image-tag}-{php-version}
 #
+# BASE_IMAGE can point to a self-built base (see php-fpm/base/build.sh)
+# to pin a PHP patch release instead of waiting for laradock/php-fpm.
+#
 
 ARG LARADOCK_PHP_VERSION
+ARG BASE_IMAGE=laradock/php-fpm
 ARG BASE_IMAGE_TAG_PREFIX=latest
-FROM laradock/php-fpm:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION}
+FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION}
 
 LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 

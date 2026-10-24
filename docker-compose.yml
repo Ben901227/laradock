@@ -213,6 +213,7 @@ services:
         context: ./php-fpm
         args:
           - CHANGE_SOURCE=${CHANGE_SOURCE}
+          - BASE_IMAGE=${PHP_FPM_BASE_IMAGE:-laradock/php-fpm}
           - BASE_IMAGE_TAG_PREFIX=${PHP_FPM_BASE_IMAGE_TAG_PREFIX}
           - LARADOCK_PHP_VERSION=${PHP_VERSION}
           - LARADOCK_PHALCON_VERSION=${PHALCON_VERSION}
