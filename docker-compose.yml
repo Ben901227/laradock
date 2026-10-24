@@ -1122,6 +1122,7 @@ services:
         context: ./certbot
       volumes:
         - ./data/certbot/certs/:/var/certs
+        - ./data/certbot/letsencrypt/:/etc/letsencrypt
         - ./certbot/letsencrypt/:/var/www/letsencrypt
       environment:
         - CN=ncumt.student.ncu.edu.tw
